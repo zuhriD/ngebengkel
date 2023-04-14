@@ -186,7 +186,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="{{ route('vehicle.update', $car->id) }}" method="POST">
+            <form action="" method="POST" id="editForm" name="editForm">
                 @csrf
                 @method('PUT')
                 <label for="name"><b>Name</b></label>

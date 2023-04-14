@@ -335,12 +335,15 @@ function changeElementWash(selectElement) {
 document.querySelector('#modalEditVehicle').addEventListener('show.bs.modal', function (event) {
     var button = event.relatedTarget // Button that triggered the modal
     var vehicleId = button.getAttribute('data-id')
+    var editForm  = document.querySelector('#editForm')
     var vehicleName = button.getAttribute('data-name')
     var vehicleType = button.getAttribute('data-type')
     var vehicleTransmission = button.getAttribute('data-transmission')
     var vehicleLicensePlate = button.getAttribute('data-license-plate')
+    editForm.action = "/vehicle/" + vehicleId
     var modal = this
     modal.querySelector('#vehicleName').value = vehicleName;
+
 
     var vehicleTypeSelect= vehicleType == "car" ? "1" : "2";
     var transmissionSelect = vehicleTransmission == "manual" ? "1" : "2";
