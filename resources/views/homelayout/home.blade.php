@@ -111,7 +111,7 @@
                         <tr>
                             <td class="pe-lg-5">{{  $car->name  }}</td>
                             <td class="ps-lg-5 pe-2">
-                                <a href="{{ route('vehicle.edit', $car->id) }}" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalEditVehicle" data-id="{{ $car->id }}" data-name="{{ $car->name }}" data-type="{{ $car->vehicle_type }}" data-transmission="{{ $car->transmission }}" data-license-plate="{{ $car->license_plate }}"><i class="fas fa-edit"></i></a>
+                                <a href="{{ route('vehicle.edit', ['vehicle' => $car->id]) }}" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalEditVehicle" data-id="{{ $car->id }}" data-name="{{ $car->name }}" data-type="{{ $car->vehicle_type }}" data-transmission="{{ $car->transmission }}" data-license-plate="{{ $car->license_plate }}"><i class="fas fa-edit"></i></a>
                             </td>
                             <td>
                                 <form action="{{ route('vehicle.destroy', ['vehicle' => $car->id]) }}" method="post" class="d-inline">
