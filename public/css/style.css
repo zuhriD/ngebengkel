@@ -1,0 +1,163 @@
+/* Style for Login */
+.satu h1 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.satu h4 {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #737373;
+}
+
+.satu {
+    margin-top: 100px;
+    margin-right: 50px;
+    padding-right: 200px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.satu a {
+    text-decoration: none;
+    color: #6D378F;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.satu a:hover {
+    text-decoration: none;
+    color: #663385;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.satu p {
+    font-size: 14px;
+}
+
+.satu button:hover {
+    background-color: #663385;
+    border-color: #663385;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #6D378F;
+    border-color: #6D378F;
+    color: #fff;
+}
+
+.dua {
+    background-color: #F6F2FF;
+    position: absolute;
+    width: 810px;
+    height: 100%;
+    left: 720px;
+}
+.dua img{
+    margin-top: 100px;
+    margin-left: 100px;
+    width: 550px;
+    height: 550px;
+}
+
+/* Style for register */
+.regis h1 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.regis h4 {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #737373;
+}
+
+.regis {
+    margin-top: 50px;
+    padding-right: 200px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.regis a {
+    text-decoration: none;
+    color: #6D378F;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.regis a:hover {
+    text-decoration: none;
+    color: #663385;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.regis p {
+    font-size: 14px;
+}
+
+.regis button:hover {
+    background-color: #663385;
+    border-color: #663385;
+    color: #fff;
+}
+
+/* Style for home */
+.blok {
+    background-color: #F6F2FF;
+}
+.blok .row a{
+    color: #6D378F;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.card a{
+    color: #6D378F;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+
+.card .card-header {
+    background-color: white;
+}
+
+.card .card-body a{
+    color: black;
+}
+.card .card-body .tabel {
+    padding: 10px;
+    
+}
+.card .card-body .tabel:hover {
+    background-color: #F6F6F6;
+    color: black;
+    
+}
+
+.col-md-6 a{
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.btn-primary:hover {
+    background-color: #663385;
+    border-color: #663385;
+    color: #fff;
+}
+
+.border-primary{
+    border-color: #6D378F !important;
+}
+
+.bg-primary{
+    background-color: #6D378F !important;
+}
+
+.form-check-input:checked {
+    background-color: #6D378F !important;
+    border-color: #6D378F !important;
+}
