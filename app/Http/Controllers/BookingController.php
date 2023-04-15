@@ -36,20 +36,29 @@ class BookingController extends Controller
      */
     public function store(Request $request, $service_type)
     {
-     
-        $vehicle = Vehicle::find($request->get('vehicle'));
-        $booking = new Booking([
-            'id_vehicle' => $request->get('vehicle'),
-            'id_user' => 1,
-            'service_type' => $service_type,
-            'name' => $vehicle->name,
-            'date' => $request->get('date'),
-            'notes' => $request->get('notes'),
-            'ammount' => $request->get('package'),
-            'status' => 'pending'
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'vehicle_type' => 'required',
+            'transmission' => 'required',
+            'license_number_plate' => 'required'
         ]);
-        // dd($booking);
+
+        $vehicle = new Vehicle([
+            'name' => $request->get('name'),
+            'vehicle_type' => $request->get('vehicle_type'),
+            'transmission' => $request->get('transmission'),
+            'license_plate' => $request->get('license_number_plate')
+        ]);
+
+        $vehicle->save();
+
+        $booking = new Booking([
+            'service_type' => $service_type,
+            'vehicle_id' => $vehicle->id
+        ]);
+
         $booking->save();
+
         return redirect('/')->with('success', 'Booking saved!');
     }
 

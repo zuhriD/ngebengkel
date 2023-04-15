@@ -35,22 +35,33 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        // $request->validate([
+        //     'name' => 'required',
+        //     'vehicle_type' => 'required',
+        //     'transmission' => 'required',
+        //     'license_number_plate' => 'required'
+        // ]);
+
+        // $vehicle = new Vehicle([
+        //     'name' => $request->get('name'),
+        //     'vehicle_type' => $request->get('vehicle_type'),
+        //     'transmission' => $request->get('transmission'),
+        //     'license_plate' => $request->get('license_number_plate')
+        // ]);
+
+        // $vehicle->save();
+
+        // return redirect('/')->with('success', 'Vehicle saved!');
+
+        $validatedData = $request->validate([
             'name' => 'required',
             'vehicle_type' => 'required',
-            'transmission' => 'required',
+            'transmissin' => 'required',
             'license_number_plate' => 'required'
         ]);
-        
-        $vehicle = new Vehicle([
-            'name' => $request->get('name'),
-            'vehicle_type' => $request->get('vehicle_type'),
-            'transmission' => $request->get('transmission'),
-            'license_plate' => $request->get('license_number_plate')
-        ]);
-        
-        $vehicle->save();
-        
+
+        $vehicle = Vehicle::create($validatedData);
+
         return redirect('/')->with('success', 'Vehicle saved!');
     }
 
@@ -85,18 +96,29 @@ class VehicleController extends Controller
      */
     public function update(Request $request, Vehicle $vehicle)
     {
-        $request->validate([
+        // $request->validate([
+        //     'vehicleName' => 'required',
+        //     'vehicleType' => 'required',
+        //     'vehicleTransmission' => 'required',
+        //     'vehicleLicensePlate' => 'required'
+        // ]);
+        // $vehicle = Vehicle::find($vehicle->id);
+        // $vehicle->name = $request->get('vehicleName');
+        // $vehicle->vehicle_type = $request->get('vehicleType');
+        // $vehicle->transmission = $request->get('vehicleTransmission');
+        // $vehicle->license_plate = $request->get('vehicleLicensePlate');
+        // $vehicle->save();
+
+        // return redirect('/')->with('success', 'Vehicle updated!');
+
+        $validatedData = $request->validate([
             'vehicleName' => 'required',
             'vehicleType' => 'required',
             'vehicleTransmission' => 'required',
             'vehicleLicensePlate' => 'required'
         ]);
-        $vehicle = Vehicle::find($vehicle->id);
-        $vehicle->name = $request->get('vehicleName');
-        $vehicle->vehicle_type = $request->get('vehicleType');
-        $vehicle->transmission = $request->get('vehicleTransmission');
-        $vehicle->license_plate = $request->get('vehicleLicensePlate');
-        $vehicle->save();
+
+        $vehicle->update($validatedData);
 
         return redirect('/')->with('success', 'Vehicle updated!');
     }
@@ -107,9 +129,13 @@ class VehicleController extends Controller
      * @param  \App\Models\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Vehicle $vehicle)
     {
-        Vehicle::find($id)->delete();
+        // Vehicle::find($id)->delete();
+        // return redirect('/')->with('success', 'Vehicle deleted!');
+
+        $vehicle->delete();
+
         return redirect('/')->with('success', 'Vehicle deleted!');
     }
 }
