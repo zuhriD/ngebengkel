@@ -14,7 +14,8 @@
                 <div class="regis">
                 <h1>Gear up for Repair</h1>
                 <h4>Welcome to Ngebengkel! Please complete the form to register.</h4>
-                <form>
+                <form action="" method="post">
+                    @csrf
                     <div class="input-group mb-4">
                         <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter your Full Name">
                     </div>
@@ -30,14 +31,14 @@
                             <i class="fas fa-eye" id="show_eye"></i>
                             <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
                           </span>
-                      </div> 
+                      </div>
                       <div class="input-group mb-3">
                         <input  name="confirmpassword" type="password" value="" class="form-control" id="confirmpassword" placeholder="Confirm Password" required="true" >
                         <span class="input-group-text" onclick="confirmpasswordVisibility();">
                             <i class="fas fa-eye" id="show_eye"></i>
                             <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
                           </span>
-                      </div> 
+                      </div>
                         <button type="submit" class="btn btn-primary btn-block w-100">Register</button>
                 </form>
                 <div class="text-center mt-3">
@@ -71,7 +72,7 @@
         function confirmpasswordVisibility() {
             let passwordS = document.getElementById('confirmpassword');
             let passwordIcon = document.getElementById('password-icon');
-            
+
             if (passwordS.type === 'password') {
                 passwordS.type = 'text';
                 passwordIcon.classList.remove('fa-eye-slash');
