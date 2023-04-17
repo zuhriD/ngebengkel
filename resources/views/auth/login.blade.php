@@ -33,7 +33,7 @@
                     <button type="submit" class="btn btn-primary btn-block w-100">Login</button>
                 </form>
                 <div class="text-center mt-3">
-                    <p>Don't have an account? <a href="#" class="text-decoration-none">Register now</a></p>
+                    <p>Don't have an account? <a href="{{ route('auth.register') }}" class="text-decoration-none">Register now</a></p>
                 </div>
             </div>
             <div class="dua col-lg-6 col-md-8 col-sm-10 ">

@@ -42,7 +42,7 @@
                         <button type="submit" class="btn btn-primary btn-block w-100">Register</button>
                 </form>
                 <div class="text-center mt-3">
-                    <p>Already have an account?  <a href="#" class="text-decoration-none">Login</a></p>
+                    <p>Already have an account?  <a href="{{ route('auth.login') }}" class="text-decoration-none">Login</a></p>
                 </div>
              </div>
             </div>
