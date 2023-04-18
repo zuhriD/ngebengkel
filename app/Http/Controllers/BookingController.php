@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -36,11 +37,10 @@ class BookingController extends Controller
      */
     public function store(Request $request, $service_type)
     {
-     
         $vehicle = Vehicle::find($request->get('vehicle'));
         $booking = new Booking([
             'id_vehicle' => $request->get('vehicle'),
-            'id_user' => 1,
+            'id_user' => Auth::user()->id,
             'service_type' => $service_type,
             'name' => $vehicle->name,
             'date' => $request->get('date'),
@@ -48,7 +48,6 @@ class BookingController extends Controller
             'ammount' => $request->get('package'),
             'status' => 'pending'
         ]);
-        // dd($booking);
         $booking->save();
         return redirect('/')->with('success', 'Booking saved!');
     }
