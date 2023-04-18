@@ -18,6 +18,3 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'index_register']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/logout', [AuthController::class, 'logout']);
-
-Route::get('/home', [VehicleController::class, 'index'])->middleware('auth');
-Route::post('/home', [VehicleController::class, 'postHandler'])->middleware('auth');

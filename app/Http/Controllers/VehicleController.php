@@ -4,73 +4,138 @@ namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class VehicleController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        return view('homelayout.home', [
-            'vehicles' => Vehicle::all()
-        ]);
+        //
     }
 
-    public function postHandler(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        if (!Auth::check()) {
-            return redirect('/home')->with("info", "You don't have access");
-        }
-        if ($request->submit == "store") {
-            $res = $this->store($request);
-            return redirect('/home')->with($res['status'], $res['message']);
-        }
-        if ($request->submit == "update") {
-            $res = $this->update($request);
-            return redirect('/home')->with($res['status'], $res['message']);
-        }
-        if ($request->submit == "destroy") {
-            $res = $this->destroy($request);
-            return redirect('/home')->with($res['status'], $res['message']);
-        }
+        //
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
+        // $request->validate([
+        //     'name' => 'required',
+        //     'vehicle_type' => 'required',
+        //     'transmission' => 'required',
+        //     'license_number_plate' => 'required'
+        // ]);
+
+        // $vehicle = new Vehicle([
+        //     'name' => $request->get('name'),
+        //     'vehicle_type' => $request->get('vehicle_type'),
+        //     'transmission' => $request->get('transmission'),
+        //     'license_plate' => $request->get('license_number_plate')
+        // ]);
+
+        // $vehicle->save();
+
+        // return redirect('/')->with('success', 'Vehicle saved!');
+
         $validatedData = $request->validate([
             'name' => 'required',
             'vehicle_type' => 'required',
-            'transmission' => 'required',
-            'license_plate' => 'required'
+            'transmissin' => 'required',
+            'license_number_plate' => 'required'
         ]);
 
-        Vehicle::create($validatedData);
-        return ['status' => 'success', 'message' => 'Vehicle created successfully.'];
+        $vehicle = Vehicle::create($validatedData);
+
+        return redirect('/')->with('success', 'Vehicle saved!');
     }
 
-    public function update(Request $request)
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Vehicle  $vehicle
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Vehicle $vehicle)
     {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Vehicle  $vehicle
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Vehicle $vehicle)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Vehicle  $vehicle
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Vehicle $vehicle)
+    {
+        // $request->validate([
+        //     'vehicleName' => 'required',
+        //     'vehicleType' => 'required',
+        //     'vehicleTransmission' => 'required',
+        //     'vehicleLicensePlate' => 'required'
+        // ]);
+        // $vehicle = Vehicle::find($vehicle->id);
+        // $vehicle->name = $request->get('vehicleName');
+        // $vehicle->vehicle_type = $request->get('vehicleType');
+        // $vehicle->transmission = $request->get('vehicleTransmission');
+        // $vehicle->license_plate = $request->get('vehicleLicensePlate');
+        // $vehicle->save();
+
+        // return redirect('/')->with('success', 'Vehicle updated!');
+
         $validatedData = $request->validate([
-            'id' => 'required',
-            'name' => 'required',
-            'vehicle_type' => 'required',
-            'transmission' => 'required',
-            'license_plate' => 'required'
+            'vehicleName' => 'required',
+            'vehicleType' => 'required',
+            'vehicleTransmission' => 'required',
+            'vehicleLicensePlate' => 'required'
         ]);
 
-        $vehicle = Vehicle::find($request->id);
         $vehicle->update($validatedData);
-        return ['status' => 'success', 'message' => 'Vehicle updated successfully.'];
+
+        return redirect('/')->with('success', 'Vehicle updated!');
     }
 
-    public function destroy(Request $request)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Vehicle  $vehicle
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Vehicle $vehicle)
     {
-        $validatedData = $request->validate([
-            'id' => 'required',
-        ]);
+        // Vehicle::find($id)->delete();
+        // return redirect('/')->with('success', 'Vehicle deleted!');
 
-        $vehicle = Vehicle::find($request->id);
         $vehicle->delete();
-        return ['status' => 'success', 'message' => 'Vehicle deleted successfully.'];
-    }
 
+        return redirect('/')->with('success', 'Vehicle deleted!');
+    }
 }
