@@ -13,7 +13,8 @@
             <div class="col-lg-6 col-md-8 col-sm-10 satu">
                 <h1>Login to your Account</h1>
                 <h4>Welcome back! Please complete the form to login.</h4>
-                <form>
+                <form action="" method="post">
+                    @csrf
                     <div class="input-group mb-4">
                         <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
                     </div>
@@ -23,14 +24,14 @@
                             <i class="fas fa-eye" id="show_eye"></i>
                             <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
                           </span>
-                      </div> 
+                      </div>
                     <div class="form-group d-flex justify-content-end mb-4">
                         <a href="#" class="text-decoration-none">Forgot Password?</a>
                     </div>
                         <button type="submit" class="btn btn-primary btn-block w-100">Login</button>
                 </form>
                 <div class="text-center mt-3">
-                    <p>Don't have an account? <a href="#" class="text-decoration-none">Register now</a></p>
+                    <p>Don't have an account? <a href="{{ route('register') }}" class="text-decoration-none">Register now</a></p>
                 </div>
             </div>
             <div class="dua col-lg-6 col-md-8 col-sm-10 ">

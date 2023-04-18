@@ -10,7 +10,7 @@
         <div class="nav-item text-nowrap d-flex align-items-center">
           <img src="{{ asset('images/Avatar.png') }}" alt="avatar" width="32px" class="rounded-circle me-2">
           <div class="order-1">
-            <a class="nav-link px-3" href="#">John Doe</a>
+            <a class="nav-link px-3" href="#">{{ Auth::user()->fullname }}</a>
           </div>
         </div>
       </div>
