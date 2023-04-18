@@ -35,11 +35,11 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required|string',
+            'no_telepon' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        if(Auth::attempt($credentials)){
+        if(Auth::user()->attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended('/home');
         }
