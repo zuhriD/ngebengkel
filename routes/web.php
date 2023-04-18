@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::get('/register', [AuthController::class, 'index_register'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('vehicle', App\Http\Controllers\VehicleController::class);
+
+Route::post('/booking/{service_type}', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store');

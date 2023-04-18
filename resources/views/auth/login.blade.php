@@ -13,8 +13,7 @@
             <div class="col-lg-6 col-md-8 col-sm-10 satu">
                 <h1>Login to your Account</h1>
                 <h4>Welcome back! Please complete the form to login.</h4>
-                <form action="" method="post">
-                    @csrf
+                <form>
                     <div class="input-group mb-4">
                         <input type="text" class="form-control" id="username" name="username"
                             placeholder="Enter your username">
