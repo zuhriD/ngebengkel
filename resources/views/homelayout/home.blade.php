@@ -10,7 +10,7 @@
         <div class="container blok">
             <div class="row">
                 <div class="col-md-8 mt-3">
-                    <h3>Hi, John!</h3>
+                    <h3>Hi, {{ Auth::user()->fullname }}</h3>
                     <p>Welcome to Ngebengkel, an online workshop reservation service! We are ready to help you to reserve your vehicle maintenance easily and quickly.</p>
                     <a href="#" class="text-decoration-none">Currently there are 3 queues of customers</a>
                 </div>
@@ -29,10 +29,10 @@
                              </div>
                              <div class="col-md-6">
                                  <h5 class="mt-4">
-                                     Booking 
+                                     Booking
                                  </h5>
                                  <h5>for <b style="color: #6D378F">Repairs</b></h5>
-                                 
+
                              </div>
                         </div>
                      </div>
@@ -47,10 +47,10 @@
                              </div>
                              <div class="col-md-6">
                                  <h5 class="mt-4">
-                                     Booking 
+                                     Booking
                                  </h5>
                                  <h5>for <b style="color: #6D378F">Wash</b></h5>
-                                 
+
                              </div>
                         </div>
                      </div>
@@ -82,7 +82,7 @@
                 @else
                 <p class="text-center col-md-12" style="color: gray">You don't have any history yet</p>
                 @endif
-               
+
             </div>
         </div>
     </div>
@@ -122,8 +122,8 @@
                             </td>
                            </tr>
                         @endforeach
-                      
-                       
+
+
                     </table>
                 </div>
             </div>
@@ -168,7 +168,7 @@
 
         </div>
         <div class="modal-footer">
-         
+
           <button type="submit" class="btn btn-primary">Add</button>
         </form>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -206,7 +206,7 @@
 
         </div>
         <div class="modal-footer">
-         
+
           <button type="submit" class="btn btn-primary">Edit</button>
         </form>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -230,7 +230,7 @@
             <select name="vehicle" id="selectVehicle" class="form-select mt-2" onchange="changeElement(this)">
                 <option value="" selected disabled>Select Vehicle</option>
                 @foreach ($vehicle as $data)
-                    <option value="{{ $data->id }}" data-vehicle="{{ $data->vehicle_type }}" 
+                    <option value="{{ $data->id }}" data-vehicle="{{ $data->vehicle_type }}"
                         data-transmission="{{ $data->transmission }}">{{ $data->name }}</option>
                 @endforeach
             </select>
@@ -244,7 +244,7 @@
               </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Book</button>   
+            <button type="submit" class="btn btn-primary">Book</button>
         </form>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
@@ -280,7 +280,7 @@
                   </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Book</button>   
+                <button type="submit" class="btn btn-primary">Book</button>
             </form>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>

@@ -18,12 +18,13 @@
                     @csrf
                     <div class="input-group mb-4">
                         <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter your Full Name">
+                        <input type="hidden" class="d-none" name="role_id" value="2">
                     </div>
                     <div class="input-group mb-4">
                         <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
                     </div>
                     <div class="input-group mb-4">
-                        <input type="text" class="form-control" id="no_telepon" name="no_telepon" placeholder="Enter your number telephone">
+                        <input type="text" class="form-control" id="no_telepon" name="no_hp" placeholder="Enter your number telephone">
                     </div>
                     <div class="input-group mb-3">
                         <input  name="password" type="password" value="" class="form-control" id="password" placeholder="Password" required="true" >
@@ -33,7 +34,7 @@
                           </span>
                       </div>
                       <div class="input-group mb-3">
-                        <input  name="confirmpassword" type="password" value="" class="form-control" id="confirmpassword" placeholder="Confirm Password" required="true" >
+                        <input  name="password_confirmation" type="password" value="" class="form-control" id="password_confirmation" placeholder="Confirm Password" required="true" >
                         <span class="input-group-text" onclick="confirmpasswordVisibility();">
                             <i class="fas fa-eye" id="show_eye"></i>
                             <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
@@ -42,7 +43,7 @@
                         <button type="submit" class="btn btn-primary btn-block w-100">Register</button>
                 </form>
                 <div class="text-center mt-3">
-                    <p>Already have an account?  <a href="{{ route('auth.login') }}" class="text-decoration-none">Login</a></p>
+                    <p>Already have an account?  <a href="{{ route('login') }}" class="text-decoration-none">Login</a></p>
                 </div>
              </div>
             </div>
