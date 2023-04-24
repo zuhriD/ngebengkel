@@ -9,10 +9,10 @@
     <div class="col-md-8">
         <div class="container blok">
             <div class="row">
-                <div class="col-md-8 mt-3">
+                <div class="col-md-8 mt-3 mb-2">
                     <h3>Hi, {{ Auth::user()->fullname }}</h3>
                     <p>Welcome to Ngebengkel, an online workshop reservation service! We are ready to help you to reserve your vehicle maintenance easily and quickly.</p>
-                    <a href="#" class="text-decoration-none">Currently there are 3 queues of customers</a>
+                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalQueue">See Queue</a>
                 </div>
                 <div class="col-md-4 d-flex">
                     <img src="{{ asset('images/illustration_hero.png') }}" alt="home" class="img-fluid" width="251px" height="142px">
@@ -64,7 +64,8 @@
                 <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th scope="col">Car</th>
+                        <th scope="col">Vehicle</th>
+                        <th scope="col">Type</th>
                         <th scope="col">Service</th>
                         <th scope="col">Date</th>
                       </tr>
@@ -73,6 +74,7 @@
                       @foreach ($history as $data)
                         <tr>
                             <td>{{ $data->name }}</td>
+                            <td>{{ $data->vehicle->vehicle_type }}</td>
                             <td>{{ $data->service_type }}</td>
                             <td>{{ \Carbon\Carbon::parse($data->date)->format('M d, Y') }}</td>
                         </tr>
@@ -130,16 +132,6 @@
         </div>
     </div>
 </div>
-@if(session('success'))
-    <script>
-        Swal.fire({
-            title: 'Success!',
-            text: '{{ session('success') }}',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        })
-    </script>
-@endif
 {{-- Modal Add Vehicle --}}
 <div class="modal fade" id="modalVehicle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -288,5 +280,75 @@
     </div>
 </div>
 
+{{-- Modal For Queue --}}
+<div class="modal fade" id="modalQueue" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Queue For Book</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">{{ $countCarRepair }}</span>
+                        <span class="info-box-number">
+                          Car Repair
+                        </span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">{{ $countMotorcycleRepair }}</span>
+                        <span class="info-box-number">
+                          Motorcycle Repair
+                        </span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">{{ $countCarWash }}</span>
+                        <span class="info-box-number">
+                          Car Wash
+                        </span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">{{ $countMotorcycleWash }}</span>
+                        <span class="info-box-number">
+                          Motorcycle Wash
+                        </span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
 
 @endsection

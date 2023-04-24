@@ -13,6 +13,11 @@
             <div class="col-lg-6 col-md-8 col-sm-10 satu">
                 <h1>Login to your Account</h1>
                 <h4>Welcome back! Please complete the form to login.</h4>
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                    </div>                   
+                @endif
                 <form action="" method="post">
                     @csrf
                     <div class="input-group mb-4">

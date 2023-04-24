@@ -2,7 +2,7 @@
   <div class="position-sticky pt-3 mt-5 ms-4 mb-5">
     <ul class="nav flex-column">
       <li class="nav-item mb-2">
-        <a class="nav-link active" aria-current="page" href="#">
+        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">
         <i class="fas fa-home"></i>
         <span class="ms-2">Home</span>
         </a>
@@ -13,6 +13,14 @@
           <span class="ms-2">Services</span>
         </a>
       </li>
+      @if (Auth::user()->role_id == 1)
+      <li class="nav-item mb-2">
+        <a class="nav-link {{ request()->is('home/orderlist') ? 'active' : '' }}" href="{{ route('home.orderlist') }}">
+          <i class="fas fa-list"></i>
+          <span class="ms-2">Order List</span>
+        </a>
+      </li>
+      @endif
     </ul>
    <div class="position-sticky pt-3 mt-5 ms-3">
     <i class="fas fa-map-marker-alt"></i>

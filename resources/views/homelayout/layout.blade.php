@@ -24,6 +24,9 @@
     {{-- SideBars CSS --}}
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
+     {{-- Jquery --}}
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>
         @yield('title')
     </title>
@@ -50,8 +53,7 @@
     <script src="{{ asset('js/sidebars.js') }}"></script>
     {{-- Style.js --}}
     <script src="{{ asset('js/style.js') }}"></script>
-    {{-- Jquery --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
      {{-- Sweet Alert --}}
      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   

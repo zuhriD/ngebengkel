@@ -353,3 +353,7 @@ document.querySelector('#modalEditVehicle').addEventListener('show.bs.modal', fu
     vehicleTransmissionOption.selected = true;
     modal.querySelector('#vehicleLicensePlate').value = vehicleLicensePlate
 })
+
+$(document).ready(function() {
+  $('.dropdown-toggle').dropdown();
+});

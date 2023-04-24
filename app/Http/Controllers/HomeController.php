@@ -14,6 +14,36 @@ class HomeController extends Controller
         $vehicle  = Vehicle::all();
         $count = Vehicle::count();
         $history = Booking::with('vehicle')->get();
-        return view('homelayout.home', compact('vehicle', 'count', 'history'));
+        $countCarRepair = Booking::with('vehicle')
+                          ->where('service_type', 'repair')
+                          ->whereHas('vehicle', function($query) {
+                              $query->where('vehicle_type', 'car');
+                          })
+                          ->count();
+        $countCarWash = Booking::with('vehicle')
+                          ->where('service_type', 'wash')
+                          ->whereHas('vehicle', function($query) {
+                              $query->where('vehicle_type', 'car');
+                          })
+                          ->count();
+        $countMotorcycleRepair = Booking::with('vehicle')
+                          ->where('service_type', 'repair')
+                          ->whereHas('vehicle', function($query) {
+                              $query->where('vehicle_type', 'motorcycle');
+                          })
+                          ->count();
+        $countMotorcycleWash = Booking::with('vehicle') 
+                          ->where('service_type', 'wash')
+                          ->whereHas('vehicle', function($query) {
+                              $query->where('vehicle_type', 'motorcycle');
+                          })
+                          ->count();
+        return view('homelayout.home', compact('vehicle', 'count', 'history', 'countCarRepair', 'countCarWash', 'countMotorcycleRepair', 'countMotorcycleWash'));
+    }
+
+    public function orderlist()
+    {
+        $orderlist = Booking::with('vehicle')->get();
+        return view('homelayout.orderlist', compact('orderlist'));
     }
 }

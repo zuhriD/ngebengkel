@@ -35,10 +35,12 @@ Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index
 Route::post('/register', [App\Http\Controllers\Auth\AuthController::class, 'register']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout']);
+    Route::post('/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
 
     // Home and Resource Routes
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home/orderlist', [App\Http\Controllers\HomeController::class, 'orderlist'])->name('home.orderlist');
     Route::resource('vehicle', App\Http\Controllers\VehicleController::class);
     Route::post('/booking/{service_type}', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store');
+    Route::delete('/booking/{id}', [App\Http\Controllers\BookingController::class, 'destroy'])->name('booking.destroy');
 });

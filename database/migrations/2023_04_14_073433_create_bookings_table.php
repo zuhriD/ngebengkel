@@ -22,7 +22,7 @@ class CreateBookingsTable extends Migration
             $table->date('date');
             $table->text('notes')->nullable();
             $table->string('ammount');
-            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
+            $table->enum('status', ['stand_by', 'on_process', 'done'])->default('stand_by');
             $table->timestamps();
         });
     }
