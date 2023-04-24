@@ -39,8 +39,17 @@ Route::middleware('auth')->group(function () {
 
     // Home and Resource Routes
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Home Routes
     Route::get('/home/orderlist', [App\Http\Controllers\HomeController::class, 'orderlist'])->name('home.orderlist');
+    Route::get('/home/sparepart', [App\Http\Controllers\HomeController::class, 'sparepart'])->name('home.sparepart');
+
+    // Sparepart Routes
+    Route::resource('sparepart', App\Http\Controllers\SparepartController::class);
+
+    // Vehicle Routes
     Route::resource('vehicle', App\Http\Controllers\VehicleController::class);
+    
+    // Booking Routes
     Route::post('/booking/{service_type}', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store');
     Route::delete('/booking/{id}', [App\Http\Controllers\BookingController::class, 'destroy'])->name('booking.destroy');
 });

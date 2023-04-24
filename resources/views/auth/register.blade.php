@@ -71,7 +71,7 @@
             }
         }
         function confirmpasswordVisibility() {
-            let passwordS = document.getElementById('confirmpassword');
+            let passwordS = document.getElementById('password_confirmation');
             let passwordIcon = document.getElementById('password-icon');
 
             if (passwordS.type === 'password') {

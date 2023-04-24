@@ -7,17 +7,18 @@
         <span class="ms-2">Home</span>
         </a>
       </li>
-      <li class="nav-item mb-2">
-        <a class="nav-link" href="#">
-         <i class="fas fa-tools"></i>
-          <span class="ms-2">Services</span>
-        </a>
-      </li>
+     
       @if (Auth::user()->role_id == 1)
       <li class="nav-item mb-2">
         <a class="nav-link {{ request()->is('home/orderlist') ? 'active' : '' }}" href="{{ route('home.orderlist') }}">
           <i class="fas fa-list"></i>
           <span class="ms-2">Order List</span>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link {{ request()->is('home/sparepart') ? 'active' : '' }}" href="{{ route('home.sparepart') }}">
+          <i class="fas fa-tools"></i>
+          <span class="ms-2">Sparepart</span>
         </a>
       </li>
       @endif

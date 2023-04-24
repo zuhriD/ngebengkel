@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Sparepart;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
@@ -45,5 +46,11 @@ class HomeController extends Controller
     {
         $orderlist = Booking::with('vehicle')->get();
         return view('homelayout.orderlist', compact('orderlist'));
+    }
+
+    public function sparepart()
+    {
+        $sparepart = Sparepart::all();
+        return view('homelayout.sparepart', compact('sparepart'));
     }
 }
