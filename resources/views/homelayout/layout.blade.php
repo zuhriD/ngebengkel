@@ -46,6 +46,9 @@
             </main>
         </div>
       </div>
+
+      {{-- Modal --}}
+      @include('homelayout.modal')
    
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>

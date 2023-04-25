@@ -45,7 +45,8 @@ class HomeController extends Controller
     public function orderlist()
     {
         $orderlist = Booking::with('vehicle')->get();
-        return view('homelayout.orderlist', compact('orderlist'));
+        $spareparts = Sparepart::all();
+        return view('homelayout.orderlist', compact('orderlist', 'spareparts'));
     }
 
     public function sparepart()

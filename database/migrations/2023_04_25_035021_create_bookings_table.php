@@ -23,6 +23,7 @@ class CreateBookingsTable extends Migration
             $table->text('notes')->nullable();
             $table->string('ammount');
             $table->enum('status', ['stand_by', 'on_process', 'done'])->default('stand_by');
+            $table->foreignId('spareparts_id')->nullable()->constrained('spareparts')->onDelete('cascade');
             $table->timestamps();
         });
     }

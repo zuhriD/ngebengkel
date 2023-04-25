@@ -36,6 +36,13 @@ class SparepartController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedSparepart = $request->validate([
+            'name' => 'required',
+            'category' => 'required',
+            'price' => 'required'
+        ]);
+        $sparepart = Sparepart::create($validatedSparepart);
+        return redirect('/home/sparepart')->with('success', 'Sparepart saved!');
     }
 
     /**
@@ -70,6 +77,17 @@ class SparepartController extends Controller
     public function update(Request $request, Sparepart $sparepart)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'category' => 'required',
+            'price' => 'required'
+        ]);
+        $sparepart = Sparepart::find($sparepart->id);
+        $sparepart->name = $request->get('name');
+        $sparepart->category = $request->get('category');
+        $sparepart->price = $request->get('price');
+        $sparepart->save();
+        return redirect('/home/sparepart')->with('success', 'Sparepart updated!');
     }
 
     /**
@@ -81,5 +99,7 @@ class SparepartController extends Controller
     public function destroy(Sparepart $sparepart)
     {
         //
+        $sparepart->delete();
+        return redirect('/home/sparepart')->with('success', 'Sparepart deleted!');
     }
 }

@@ -148,6 +148,12 @@
     border-color: #663385;
     color: #fff;
 }
+.btn-check:focus+.btn-primary, .btn-primary:focus {
+  color: #fff;
+  background-color: #663385;
+  border-color: #663385;
+  box-shadow: 0 0 0 0.25rem rgb(109 55 143 / 50%);
+}
 
 .border-primary{
     border-color: #6D378F !important;

@@ -48,8 +48,10 @@ Route::middleware('auth')->group(function () {
 
     // Vehicle Routes
     Route::resource('vehicle', App\Http\Controllers\VehicleController::class);
-    
+
     // Booking Routes
     Route::post('/booking/{service_type}', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store');
-    Route::delete('/booking/{id}', [App\Http\Controllers\BookingController::class, 'destroy'])->name('booking.destroy');
+    Route::put('/booking/{id}', [App\Http\Controllers\BookingController::class, 'update'])->name('booking.update');
+    Route::put('/booking/sparepart/{sparepart}', [App\Http\Controllers\BookingController::class, 'updateSparepart'])->name('booking.updateSparepart');
+    Route::delete('/booking/{booking}', [App\Http\Controllers\BookingController::class, 'destroy'])->name('booking.destroy');
 });

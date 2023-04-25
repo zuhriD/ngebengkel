@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Sparepart;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -81,9 +82,39 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Booking $booking)
+        public function update(Request $request, $id)
+        {
+            //
+            $request->validate([
+                'statusEdit' => 'required'
+            ]);
+            $booking = Booking::find($id);
+            if($request->get('statusEdit') == '1'){
+                $booking->status = 'stand_by';
+            }else if($request->get('statusEdit') == '2'){
+                $booking->status = 'on_process';
+            }else if($request->get('statusEdit') == '3'){
+                $booking->status = 'done';
+            }
+            $booking->save();
+            return redirect('/home/orderlist')->with('success', 'Booking updated!');
+        }
+
+    public function updateSparepart(Request $request, $sparepart)
     {
-        //
+        $request->validate([
+            'sparepart_id' => 'required',
+            'booking_id' => 'required',
+        ]);
+        $sparepart = Sparepart::find($sparepart);
+        $booking = Booking::find($request->get('booking_id'));
+        $total_price = intval($booking->ammount) + intval($sparepart->price);
+        $booking->ammount = $total_price;
+        $booking->spareparts_id = $request->get('sparepart_id');
+        $booking->save();
+        return redirect('/home/orderlist')->with('success', 'Booking updated!');
+
+
     }
 
     /**
@@ -95,5 +126,7 @@ class BookingController extends Controller
     public function destroy(Booking $booking)
     {
         //
+        $booking->delete();
+        return redirect('/home/orderlist')->with('success', 'Booking deleted!');
     }
 }

@@ -354,6 +354,41 @@ document.querySelector('#modalEditVehicle').addEventListener('show.bs.modal', fu
     modal.querySelector('#vehicleLicensePlate').value = vehicleLicensePlate
 })
 
+
+// Change Data Modal Edit Spareparts
+document.querySelector('#modalEditSparepart').addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget // Button that triggered the modal
+    var sparepartId = button.getAttribute('data-id')
+    var editForm  = document.querySelector('#editFormSparepart')
+    var sparepartName = button.getAttribute('data-name')
+    var category = button.getAttribute('data-category')
+    var sparepartPrice = button.getAttribute('data-price')
+    editForm.action = "/sparepart/" + sparepartId
+   
+    var modal = this
+    
+    modal.querySelector('#nameEdit').value = sparepartName;
+    console.log(sparepartName);
+    modal.querySelector('#categoryEdit').value = category;
+    modal.querySelector('#priceEdit').value = sparepartPrice;
+})
+
+// Change Data Modal Edit Booking
+document.querySelector('#modalEditBooking').addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget // Button that triggered the modal
+    var bookingId = button.getAttribute('data-id')
+    var editForm  = document.querySelector('#editFormBooking')
+    var bookingStatus = button.getAttribute('data-status')
+    editForm.action = "/booking/" + bookingId
+    var modal = this
+    var bookingStatusSelect = bookingStatus == "stand_by" ? "1" : "on_process" ? "2" : "3";
+    var bookingStatusOption = modal.querySelector('#statusEdit option[value="' + bookingStatusSelect + '"]');
+    bookingStatusOption.selected = true;
+})
+
+
+
+// Dropdown
 $(document).ready(function() {
   $('.dropdown-toggle').dropdown();
 });
