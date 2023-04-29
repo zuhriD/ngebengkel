@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Sparepart;
+use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
@@ -68,5 +69,11 @@ class HomeController extends Controller
     {
         $orderlist = Booking::with(['vehicle','user','spareparts'])->where('id_user', $id)->where('status', 'done')->get();
         return view('homepage_view.invoice', compact('orderlist'));
+    }
+
+    public function profile($id)
+    {
+        $user = User::find($id);
+        return view('homepage_view.profil', compact('user'));
     }
 }

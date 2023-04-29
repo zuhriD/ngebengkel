@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/home/sparepart', [App\Http\Controllers\HomeController::class, 'sparepart'])->name('home.sparepart');
     Route::get('/home/invoice', [App\Http\Controllers\HomeController::class, 'invoice'])->name('home.invoice');
     Route::get('/home/invoiceUser/{id}', [App\Http\Controllers\HomeController::class, 'invoiceUser'])->name('home.invoiceUser');
+    Route::get('/home/profile/{id}', [App\Http\Controllers\HomeController::class, 'profile'])->name('home.profile');
 
     // Sparepart Routes
     Route::resource('sparepart', App\Http\Controllers\SparepartController::class);
@@ -60,4 +61,6 @@ Route::middleware('auth')->group(function () {
     // Invoice 
     Route::get('/booking/invoice/{booking}', [App\Http\Controllers\BookingController::class, 'invoice'])->name('booking.invoice');
     Route::get('/booking/invoiceUser/{id}', [App\Http\Controllers\BookingController::class, 'invoiceUser'])->name('booking.invoiceUser');
+
+
 });
