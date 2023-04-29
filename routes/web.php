@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,16 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/login', [App\Http\Controllers\Auth\AuthController::class, 'index_login'])->name('login')->middleware('guest');
-// Route::post('/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])->middleware('guest');
-// Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index_register'])->name('register');
-// Route::post('/register', [App\Http\Controllers\Auth\AuthController::class, 'register']);
-// Route::get('/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])->middleware('auth');
-
-
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
-// Route::resource('vehicle', App\Http\Controllers\VehicleController::class)->middleware('auth');
-// Route::post('/booking/{service_type}', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store')->middleware('auth');
 
 // Auth Routes
 Route::middleware('guest')->group(function () {

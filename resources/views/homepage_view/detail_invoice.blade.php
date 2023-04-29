@@ -1,7 +1,6 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Invoice</title>
@@ -64,6 +63,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="invoice-header">
         <h1>Invoice</h1>
@@ -93,11 +93,11 @@
             <td>{{ $booking->service_type }}</td>
         </tr>
         @if ($booking->note != null)
-          <tr>
-            <th>Note</th>
-            <td>{{ $booking->note }}</td>
-          </tr>
-         @endif
+            <tr>
+                <th>Note</th>
+                <td>{{ $booking->note }}</td>
+            </tr>
+        @endif
         <tr>
             <th>Date</th>
             <td>{{ \Carbon\Carbon::parse($booking->date)->format('M d, Y') }}</td>
@@ -110,25 +110,25 @@
 
     <!-- Display spareparts information -->
     <h3>Spareparts</h3>
-    @if(count($booking->spareparts) > 0)
-    <table class="booking-info">
-        <tr>
-            <th>Sparepart Name</th>
-            <th>Price</th>
-        </tr>
-        @foreach($booking->spareparts as $sparepart)
-        <tr>
-            <td>{{ $sparepart->name }}</td>
-            <td>Rp {{ number_format($sparepart->price, 0, ',', '.') }}</td>
-        </tr>
-        @endforeach
-        <tr>
-            <th>Total Price</th>
-            <td>Rp {{ number_format($priceSparepart, 0, ',', '.') }}</td>
-        </tr>
-    </table>
+    @if (count($booking->spareparts) > 0)
+        <table class="booking-info">
+            <tr>
+                <th>Sparepart Name</th>
+                <th>Price</th>
+            </tr>
+            @foreach ($booking->spareparts as $sparepart)
+                <tr>
+                    <td>{{ $sparepart->name }}</td>
+                    <td>Rp {{ number_format($sparepart->price, 0, ',', '.') }}</td>
+                </tr>
+            @endforeach
+            <tr>
+                <th>Total Price</th>
+                <td>Rp {{ number_format($priceSparepart, 0, ',', '.') }}</td>
+            </tr>
+        </table>
     @else
-    <p>No spareparts added to this booking.</p>
+        <p>No spareparts added to this booking.</p>
     @endif
 
     <!-- Display total price -->
@@ -145,7 +145,8 @@
         <tr>
             <th>Total Price</th>
             <th>Rp {{ number_format($total_price, 0, ',', '.') }}</th>
-        </tr> 
+        </tr>
     </table>
 </body>
-</html>   
+
+</html>

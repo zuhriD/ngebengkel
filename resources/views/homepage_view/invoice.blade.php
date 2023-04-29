@@ -19,58 +19,62 @@
                                 <p class="text-center">There is no data</p>
                             </div>
                         @else
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Booking Date</th>
-                                    <th scope="col">Owner</th>
-                                    <th scope="col">Vehicle Type</th>
-                                    <th scope="col">Vehicle Name</th>
-                                    <th scope="col">Transmission</th>
-                                    <th scope="col">Request</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($orderlist as $order)
+                            <table class="table table-striped">
+                                <thead>
                                     <tr>
-                                        <td>{{ \Carbon\Carbon::parse($order->date)->format('M d, Y') }}</td>
-                                        <td>{{ $order->user->fullname }}</td>
-                                        <td>{{ $order->vehicle->vehicle_type }}</td>
-                                        <td>{{ $order->vehicle->name }}</td>
-                                        <td>{{ $order->vehicle->transmission }}</td>
-                                        <td>
-                                            @if ($order->note == null)
-                                                <p>No Request</p>
-                                            @else
-                                                <p>{{ $order->note }}</p>
-                                            @endif
-                                        </td>
-                                        <td>{{ $order->ammount }}</td>
-                                        <td>
-                                            @if ($order->status == "stand_by")
-                                                <span class="badge bg-warning text-dark">Stand By</span>
-                                            @elseif ($order->status == "on_process")
-                                                <span class="badge bg-info text-white">On Process</span>
-                                            @elseif ($order->status == "done")
-                                                <span class="badge bg-success text-white">Done</span>
-                                            @endif
-                                        </td>
-                                        @if (Auth::user()->role_id == 1)
-                                        <td>
-                                            <a href="{{ route('booking.invoice', $order->id) }}" class="btn btn-primary text-white"><i class="fas fa-file-invoice"></i></a>
-                                        </td>
-                                        @else
-                                        <td>
-                                            <a href="{{ route('booking.invoiceUser', $order->id) }}" class="btn btn-primary text-white"><i class="fas fa-file-invoice"></i></a>
-                                        </td>
-                                        @endif                                    
+                                        <th scope="col">Booking Date</th>
+                                        <th scope="col">Owner</th>
+                                        <th scope="col">Vehicle Type</th>
+                                        <th scope="col">Vehicle Name</th>
+                                        <th scope="col">Transmission</th>
+                                        <th scope="col">Request</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($orderlist as $order)
+                                        <tr>
+                                            <td>{{ \Carbon\Carbon::parse($order->date)->format('M d, Y') }}</td>
+                                            <td>{{ $order->user->fullname }}</td>
+                                            <td>{{ $order->vehicle->vehicle_type }}</td>
+                                            <td>{{ $order->vehicle->name }}</td>
+                                            <td>{{ $order->vehicle->transmission }}</td>
+                                            <td>
+                                                @if ($order->note == null)
+                                                    <p>No Request</p>
+                                                @else
+                                                    <p>{{ $order->note }}</p>
+                                                @endif
+                                            </td>
+                                            <td>{{ $order->ammount }}</td>
+                                            <td>
+                                                @if ($order->status == 'stand_by')
+                                                    <span class="badge bg-warning text-dark">Stand By</span>
+                                                @elseif ($order->status == 'on_process')
+                                                    <span class="badge bg-info text-white">On Process</span>
+                                                @elseif ($order->status == 'done')
+                                                    <span class="badge bg-success text-white">Done</span>
+                                                @endif
+                                            </td>
+                                            @if (Auth::user()->role_id == 1)
+                                                <td>
+                                                    <a href="{{ route('booking.invoice', $order->id) }}"
+                                                        class="btn btn-primary text-white"><i
+                                                            class="fas fa-file-invoice"></i></a>
+                                                </td>
+                                            @else
+                                                <td>
+                                                    <a href="{{ route('booking.invoiceUser', $order->id) }}"
+                                                        class="btn btn-primary text-white"><i
+                                                            class="fas fa-file-invoice"></i></a>
+                                                </td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         @endif
                     </div>
                 </div>
