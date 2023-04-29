@@ -8,6 +8,7 @@ This is a Laravel project for ngebengkel.
 2. Run `composer install` to install the required dependencies.
 3. Run `php artisan migrate` to migrate the database schema.
 4. Run `php artisan db:seed` to seed the database with sample data.
+5. Run `php artisan key:generate` before running the project
 
 ## Usage
 

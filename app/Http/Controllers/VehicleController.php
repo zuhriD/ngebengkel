@@ -41,16 +41,16 @@ class VehicleController extends Controller
             'transmission' => 'required',
             'license_number_plate' => 'required'
         ]);
-        
+
         $vehicle = new Vehicle([
             'name' => $request->get('name'),
             'vehicle_type' => $request->get('vehicle_type'),
             'transmission' => $request->get('transmission'),
             'license_plate' => $request->get('license_number_plate')
         ]);
-        
+
         $vehicle->save();
-        
+
         return redirect('/')->with('success', 'Vehicle saved!');
     }
 

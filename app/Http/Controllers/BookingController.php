@@ -83,23 +83,23 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-        public function update(Request $request, $id)
-        {
-            //
-            $request->validate([
-                'statusEdit' => 'required'
-            ]);
-            $booking = Booking::find($id);
-            if($request->get('statusEdit') == '1'){
-                $booking->status = 'stand_by';
-            }else if($request->get('statusEdit') == '2'){
-                $booking->status = 'on_process';
-            }else if($request->get('statusEdit') == '3'){
-                $booking->status = 'done';
-            }
-            $booking->save();
-            return redirect('/home/orderlist')->with('success', 'Booking updated!');
+    public function update(Request $request, $id)
+    {
+        //
+        $request->validate([
+            'statusEdit' => 'required'
+        ]);
+        $booking = Booking::find($id);
+        if ($request->get('statusEdit') == '1') {
+            $booking->status = 'stand_by';
+        } else if ($request->get('statusEdit') == '2') {
+            $booking->status = 'on_process';
+        } else if ($request->get('statusEdit') == '3') {
+            $booking->status = 'done';
         }
+        $booking->save();
+        return redirect('/home/orderlist')->with('success', 'Booking updated!');
+    }
 
     public function updateSparepart(Request $request, $sparepart)
     {
@@ -122,8 +122,7 @@ class BookingController extends Controller
                 $booking->spareparts()->attach($sparepart_id);
             }
             return redirect('/home/orderlist')->with('success', 'Spareparts have been added to the booking.');
-        }
-         else {
+        } else {
             return redirect('/home/orderlist')->with('error', 'Please select at least one sparepart.');
         }
 
