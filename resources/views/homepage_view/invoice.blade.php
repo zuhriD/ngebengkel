@@ -58,9 +58,15 @@
                                                 <span class="badge bg-success text-white">Done</span>
                                             @endif
                                         </td>
+                                        @if (Auth::user()->role_id == 1)
                                         <td>
-                                            <a href="{{ route('booking.invoice', $order->id) }}" target="_blank" class="btn btn-success text-white"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ route('booking.invoice', $order->id) }}" class="btn btn-primary text-white"><i class="fas fa-file-invoice"></i></a>
                                         </td>
+                                        @else
+                                        <td>
+                                            <a href="{{ route('booking.invoiceUser', $order->id) }}" class="btn btn-primary text-white"><i class="fas fa-file-invoice"></i></a>
+                                        </td>
+                                        @endif                                    
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -142,8 +144,8 @@
         </tr>
         <tr>
             <th>Total Price</th>
-            <td>Rp {{ number_format($total_price, 0, ',', '.') }}</td>
+            <th>Rp {{ number_format($total_price, 0, ',', '.') }}</th>
         </tr> 
     </table>
 </body>
-</html>
+</html>   

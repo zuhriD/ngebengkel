@@ -142,6 +142,17 @@ class BookingController extends Controller
         return $pdf->stream('invoice.pdf');
     }
 
+    public function invoiceUser($id)
+    {
+        $booking = Booking::with(['vehicle', 'user', 'spareparts'])->findOrFail($id);
+        $priceSparepart = 0;
+        foreach ($booking->spareparts as $sparepart) {
+            $priceSparepart += $sparepart->price;
+        }
+        $total_price = $booking->ammount + $priceSparepart;
+        return view('homepage_view.detail_invoiceUser', compact('booking', 'total_price', 'priceSparepart'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *

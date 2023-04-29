@@ -16,7 +16,7 @@
       </li>
       @else
       <li class="nav-item mb-2">
-        <a class="nav-link {{ request()->is('home/invoiceUser') ? 'active' : '' }}" href="{{ route('home.invoiceUser', Auth::user()->id) }}">
+        <a class="nav-link {{ request()->is('home/invoiceUser/' . Auth::user()->id) ? 'active' : '' }}" href="{{ route('home.invoiceUser', Auth::user()->id) }}">
           <i class="fas fa-file-invoice"></i>
           <span class="ms-2">Invoice</span>
         </a>

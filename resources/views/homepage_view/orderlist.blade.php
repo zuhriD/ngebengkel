@@ -59,7 +59,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-success text-white"  data-bs-toggle="modal" data-bs-target="#modalSparepart" data-id="{{ $order->id }}">Spareparts</a>
+                                            <a href="" class="btn btn-success text-white"  data-bs-toggle="modal" data-bs-target="#modalSparepart" data-id="{{ $order->id }}"><i class="fas fa-tools"></i></a>
                                             <a href="" class="btn btn-primary text-white"  data-bs-toggle="modal" data-bs-target="#modalEditBooking" data-id="{{ $order->id }}" data-status="{{ $order->status }}"><i class="fas fa-edit"></i></a>
                                             <form action="{{ route('booking.destroy', $order->id) }}" method="post" class="d-inline">
                                                 @csrf

@@ -59,4 +59,5 @@ Route::middleware('auth')->group(function () {
 
     // Invoice 
     Route::get('/booking/invoice/{booking}', [App\Http\Controllers\BookingController::class, 'invoice'])->name('booking.invoice');
+    Route::get('/booking/invoiceUser/{id}', [App\Http\Controllers\BookingController::class, 'invoiceUser'])->name('booking.invoiceUser');
 });

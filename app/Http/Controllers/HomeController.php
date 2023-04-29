@@ -67,7 +67,6 @@ class HomeController extends Controller
     public function invoiceUser($id)
     {
         $orderlist = Booking::with(['vehicle','user','spareparts'])->where('id_user', $id)->where('status', 'done')->get();
-        dd($orderlist);
         return view('homepage_view.invoice', compact('orderlist'));
     }
 }
