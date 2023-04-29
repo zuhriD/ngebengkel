@@ -39,19 +39,35 @@ class HomeController extends Controller
                               $query->where('vehicle_type', 'motorcycle');
                           })
                           ->count();
-        return view('homelayout.home', compact('vehicle', 'count', 'history', 'countCarRepair', 'countCarWash', 'countMotorcycleRepair', 'countMotorcycleWash'));
+        return view('homepage_view.home', compact('vehicle', 'count', 'history', 'countCarRepair', 'countCarWash', 'countMotorcycleRepair', 'countMotorcycleWash'));
     }
 
     public function orderlist()
     {
-        $orderlist = Booking::with('vehicle')->get();
+        $orderlist = Booking::with('vehicle')
+        ->orderBy('status', 'asc')
+        ->orderByRaw("FIELD(status, 'stand_by', 'on_process', 'done')")
+        ->get();
         $spareparts = Sparepart::all();
-        return view('homelayout.orderlist', compact('orderlist', 'spareparts'));
+        return view('homepage_view.orderlist', compact('orderlist', 'spareparts'));
     }
 
     public function sparepart()
     {
         $sparepart = Sparepart::all();
-        return view('homelayout.sparepart', compact('sparepart'));
+        return view('homepage_view.sparepart', compact('sparepart'));
+    }
+
+    public function invoice()
+    {
+        $orderlist = Booking::with(['vehicle','user'])->where('status', 'done')->get();
+        return view('homepage_view.invoice', compact('orderlist'));
+    }
+
+    public function invoiceUser($id)
+    {
+        $orderlist = Booking::with(['vehicle','user','spareparts'])->where('id_user', $id)->where('status', 'done')->get();
+        dd($orderlist);
+        return view('homepage_view.invoice', compact('orderlist'));
     }
 }

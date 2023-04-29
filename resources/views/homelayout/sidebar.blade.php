@@ -7,6 +7,22 @@
         <span class="ms-2">Home</span>
         </a>
       </li>
+      @if (Auth::user()->role_id == 1)
+      <li class="nav-item mb-2">
+        <a class="nav-link {{ request()->is('home/invoice') ? 'active' : '' }}" href="{{ route('home.invoice') }}">
+          <i class="fas fa-file-invoice"></i>
+          <span class="ms-2">Invoice</span>
+        </a>
+      </li>
+      @else
+      <li class="nav-item mb-2">
+        <a class="nav-link {{ request()->is('home/invoiceUser') ? 'active' : '' }}" href="{{ route('home.invoiceUser', Auth::user()->id) }}">
+          <i class="fas fa-file-invoice"></i>
+          <span class="ms-2">Invoice</span>
+        </a>
+      </li>
+      @endif
+      
      
       @if (Auth::user()->role_id == 1)
       <li class="nav-item mb-2">

@@ -13,7 +13,13 @@
                         <h3>Order List</h3>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped">
+                        @if ($orderlist->isEmpty())
+                            <div class="alert alert-danger" role="alert">
+                                <h4 class="alert-heading text-center">No Order List</h4>
+                                <p class="text-center">There is no data order</p>
+                            </div>
+                        @else
+                        <table class="table" id="tableOrder">
                             <thead>
                                 <tr>
                                     <th scope="col">Booking Date</th>
@@ -65,6 +71,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -83,34 +90,37 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th scope="col">Select</th>
                             <th scope="col">Sparepart Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Category</th>
-                            <th scope="col">Add</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($spareparts as $sparepart)
-                            <tr>
-                                <td>{{ $sparepart->name }}</td>
-                                <td>{{ $sparepart->category }}</td>
-                                <td>{{ $sparepart->price }}</td>
-                                <td>
-                                    <form action="" method="post" id="formAddSparepart">
-                                        @csrf
-                                        @method('put')
-                                        <input type="hidden" name="sparepart_id" value="{{ $sparepart->id }}">
-                                        <input type="hidden" name="booking_id" id="booking_id">
-                                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i></button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
+                            <form action="" method="post" id="formAddSparepart">
+                                @csrf
+                                @method('put')
+                            @foreach ($spareparts as $sparepart)
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="sparepart_id[]" value="{{ $sparepart->id }}">
+                                    </td>
+                                    <td>{{ $sparepart->name }}</td>
+                                    <td>{{ $sparepart->price }}</td>
+                                    <td>{{ $sparepart->category }}</td>
+                                </tr>
+                            @endforeach
+                        
                     </tbody>
+                    
                 </table>
-
+                
             </div>
             <div class="modal-footer">
+                <input type="hidden" name="booking_id" id="booking_id">
+                {{-- <input type="hidden" name="sparepart_id" id="sparepart_id"> --}}
+                <button type="submit" class="btn btn-primary">Add</button>
+                </form>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
@@ -118,13 +128,18 @@
     </div>
 
     <script>
+        // Data Table tableOrder
+        $(document).ready(function() {
+            $('#tableOrder').DataTable();
+        } );
+
         // Add Sparepart to Bookings
 document.querySelector('#modalSparepart').addEventListener('show.bs.modal', function (event) {
     var button = event.relatedTarget // Button that triggered the modal
     var bookingId = button.getAttribute('data-id')
     var form = document.querySelector('#formAddSparepart')
     console.log(bookingId);
-    form.action = '/booking/sparepart/' + bookingId 
+    form.action = '/booking/updateSparepart/' + bookingId 
 
     var modal = this
     modal.querySelector('#booking_id').value = bookingId;

@@ -14,4 +14,9 @@ class Sparepart extends Model
         'category',
         'price'
     ];
+
+    public function bookings()
+    {
+        return $this->belongsToMany(Booking::class);
+    }
 }

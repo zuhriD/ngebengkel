@@ -28,4 +28,9 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+
+    public function spareparts()
+    {
+        return $this->belongsToMany(Sparepart::class)->withTimestamps();
+    }
 }

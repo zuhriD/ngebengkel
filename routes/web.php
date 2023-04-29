@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
     // Home Routes
     Route::get('/home/orderlist', [App\Http\Controllers\HomeController::class, 'orderlist'])->name('home.orderlist');
     Route::get('/home/sparepart', [App\Http\Controllers\HomeController::class, 'sparepart'])->name('home.sparepart');
+    Route::get('/home/invoice', [App\Http\Controllers\HomeController::class, 'invoice'])->name('home.invoice');
+    Route::get('/home/invoiceUser/{id}', [App\Http\Controllers\HomeController::class, 'invoiceUser'])->name('home.invoiceUser');
 
     // Sparepart Routes
     Route::resource('sparepart', App\Http\Controllers\SparepartController::class);
@@ -52,6 +54,9 @@ Route::middleware('auth')->group(function () {
     // Booking Routes
     Route::post('/booking/{service_type}', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store');
     Route::put('/booking/{id}', [App\Http\Controllers\BookingController::class, 'update'])->name('booking.update');
-    Route::put('/booking/sparepart/{sparepart}', [App\Http\Controllers\BookingController::class, 'updateSparepart'])->name('booking.updateSparepart');
+    Route::put('/booking/updateSparepart/{sparepart}', [App\Http\Controllers\BookingController::class, 'updateSparepart'])->name('booking.updateSparepart');
     Route::delete('/booking/{booking}', [App\Http\Controllers\BookingController::class, 'destroy'])->name('booking.destroy');
+
+    // Invoice 
+    Route::get('/booking/invoice/{booking}', [App\Http\Controllers\BookingController::class, 'invoice'])->name('booking.invoice');
 });

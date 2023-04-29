@@ -7,6 +7,7 @@ use App\Models\Sparepart;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class BookingController extends Controller
 {
@@ -106,15 +107,39 @@ class BookingController extends Controller
             'sparepart_id' => 'required',
             'booking_id' => 'required',
         ]);
-        $sparepart = Sparepart::find($sparepart);
-        $booking = Booking::find($request->get('booking_id'));
-        $total_price = intval($booking->ammount) + intval($sparepart->price);
-        $booking->ammount = $total_price;
-        $booking->spareparts_id = $request->get('sparepart_id');
-        $booking->save();
-        return redirect('/home/orderlist')->with('success', 'Booking updated!');
+        // dd($request->get('sparepart_id'));
 
+        if (!empty($request->get('sparepart_id'))) {
+            $booking = Booking::findOrfail($request->get('booking_id'));
+            $sparepart_ids = $request->get('sparepart_id');
 
+            foreach ($sparepart_ids as $sparepart_id) {
+                $sparepart = Sparepart::findOrFail($sparepart_id);
+                $total_price = intval($booking->ammount) + intval($sparepart->price);
+                $booking->ammount = $total_price;
+                $booking->spareparts_id = $sparepart_id;
+                $booking->save();
+                $booking->spareparts()->attach($sparepart_id);
+            }
+            return redirect('/home/orderlist')->with('success', 'Spareparts have been added to the booking.');
+        }
+         else {
+            return redirect('/home/orderlist')->with('error', 'Please select at least one sparepart.');
+        }
+
+    }
+
+    public function invoice(Booking $booking)
+    {
+        $booking = Booking::with(['vehicle', 'user', 'spareparts'])->findOrFail($booking->id);
+        $priceSparepart = 0;
+        foreach ($booking->spareparts as $sparepart) {
+            $priceSparepart += $sparepart->price;
+        }
+        $total_price = $booking->ammount + $priceSparepart;
+        $pdf = PDF::loadView('homepage_view.detail_invoice', compact('booking', 'total_price', 'priceSparepart'));
+        $pdf->setPaper('a4', 'potrait');
+        return $pdf->stream('invoice.pdf');
     }
 
     /**

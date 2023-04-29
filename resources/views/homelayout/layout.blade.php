@@ -23,9 +23,13 @@
 
     {{-- SideBars CSS --}}
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
-     {{-- Jquery --}}
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- Jquery --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     
 
     <title>
         @yield('title')
@@ -48,17 +52,22 @@
       </div>
 
       {{-- Modal --}}
-      @include('homelayout.modal')
+      @include('homepage_view.modal')
    
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- DataTables JS -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
     {{-- Sidebars js --}}
     <script src="{{ asset('js/sidebars.js') }}"></script>
+
     {{-- Style.js --}}
     <script src="{{ asset('js/style.js') }}"></script>
    
-     {{-- Sweet Alert --}}
-     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {{-- Sweet Alert --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   
     @yield('scripts')
   </body>
