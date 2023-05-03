@@ -113,7 +113,7 @@
         </tr>
         <tr>
             <th>Price Service</th>
-            <td>Rp {{ number_format($booking->ammount, 0, ',', '.') }}</td>
+            <td>Rp {{ number_format(($booking->ammount - $priceSparepart), 0, ',', '.') }}</td>
         </tr>
     </table>
 
@@ -145,7 +145,7 @@
     <table class="booking-info">
         <tr>
             <td>Price Service</td>
-            <td>Rp {{ number_format($booking->ammount, 0, ',', '.') }}</td>
+            <td>Rp {{ number_format(($booking->ammount - $priceSparepart), 0, ',', '.') }}</td>
         </tr>
         <tr>
             <td>Price Sparepart</td>

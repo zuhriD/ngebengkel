@@ -143,7 +143,7 @@ class BookingController extends Controller
         foreach ($booking->spareparts as $sparepart) {
             $priceSparepart += $sparepart->price;
         }
-        $total_price = $booking->ammount + $priceSparepart;
+        $total_price = $booking->ammount;
         $pdf = PDF::loadView('homepage_view.detail_invoice', compact('booking', 'total_price', 'priceSparepart'));
         $pdf->setPaper('a4', 'potrait');
         return $pdf->stream('invoice.pdf');

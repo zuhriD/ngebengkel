@@ -18,13 +18,13 @@ function changeElement(selectElement) {
         element.innerHTML = `
             <div class="col">
                   <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" id="card-header" data-target="card-header1">
                       <h4 >Reguler</h4>
                     </div>
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 550.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package1" value="550000" required>
+                        <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)" id="package1" value="550000" required>
                         <label class="form-check-label" for="package1">
                           Select
                         </label>
@@ -34,13 +34,13 @@ function changeElement(selectElement) {
                 </div>
                 <div class="col">
                   <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" id="card-header" data-target="card-header2">
                       <h4>Medium</h4>
                     </div>
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 850.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package2" value="850000" required>
+                        <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)" id="package2" value="850000" required>
                         <label class="form-check-label" for="package2">
                           Select
                         </label>
@@ -49,14 +49,14 @@ function changeElement(selectElement) {
                   </div>
                 </div>
                 <div class="col">
-                  <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                    <div class="card-header py-3 text-white bg-primary border-primary">
+                  <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3" id="card-header" data-target="card-header3">
                       <h4>Advance</h4>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title mt-3">Rp 1.250.000</h3>
                         <div class="form-check mt-4">
-                            <input class="form-check-input" type="radio" name="package" id="package3" value="1250000" required>
+                            <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)" id="package3" value="1250000" required>
                             <label class="form-check-label" for="package3">
                               Select
                             </label>
@@ -69,13 +69,13 @@ function changeElement(selectElement) {
         element.innerHTML = `
             <div class="col">
                   <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" id="card-header" data-target="card-header4">
                       <h4 >Reguler</h4>
                     </div>
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 650.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package1" value="650000" required>
+                        <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)" id="package1" value="650000" required>
                         <label class="form-check-label" for="package1">
                           Select
                         </label>
@@ -85,13 +85,13 @@ function changeElement(selectElement) {
                 </div>
                 <div class="col">
                   <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" id="card-header" data-target="card-header5">
                       <h4>Medium</h4>
                     </div>
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 950.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package2" value="950000" required>
+                        <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)" id="package2" value="950000" required>
                         <label class="form-check-label" for="package2">
                           Select
                         </label>
@@ -100,14 +100,14 @@ function changeElement(selectElement) {
                   </div>
                 </div>
                 <div class="col">
-                  <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                    <div class="card-header py-3 text-white bg-primary border-primary">
+                  <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3 " id="card-header" data-target="card-header6">
                       <h4>Advance</h4>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title mt-3">Rp 1.350.000</h3>
                         <div class="form-check mt-4">
-                            <input class="form-check-input" type="radio" name="package" id="package3" value="1350000" required>
+                            <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)" id="package3" value="1350000" required>
                             <label class="form-check-label" for="package3">
                               Select
                             </label>
@@ -120,13 +120,13 @@ function changeElement(selectElement) {
         element.innerHTML = `
             <div class="col">
                   <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" id="card-header" data-target="card-header7">
                       <h4 >Reguler</h4>
                     </div>
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 120.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package1" value="120000" required>
+                        <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)" id="package1" value="120000" required>
                         <label class="form-check-label" for="package1">
                           Select
                         </label>
@@ -136,13 +136,13 @@ function changeElement(selectElement) {
                 </div>
                 <div class="col">
                   <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" id="card-header" data-target="card-header8">
                       <h4>Medium</h4>
                     </div>
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 220.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package2" value="220000" required>
+                        <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)" id="package2" value="220000" required>
                         <label class="form-check-label" for="package2">
                           Select
                         </label>
@@ -151,14 +151,14 @@ function changeElement(selectElement) {
                   </div>
                 </div>
                 <div class="col">
-                  <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                    <div class="card-header py-3 text-white bg-primary border-primary">
+                  <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3 " id="card-header" data-target="card-header9">
                       <h4>Advance</h4>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title mt-3">Rp 320.000</h3>
                         <div class="form-check mt-4">
-                            <input class="form-check-input" type="radio" name="package" id="package3" value="320000" required>
+                            <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)" id="package3" value="320000" required>
                             <label class="form-check-label" for="package3">
                               Select
                             </label>
@@ -171,13 +171,13 @@ function changeElement(selectElement) {
         element.innerHTML = `
             <div class="col">
                   <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" id="card-header" data-target="card-header10">
                       <h4 >Reguler</h4>
                     </div>
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 150.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package1" value="150000" required>
+                        <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)"  id="package1" value="150000" required>
                         <label class="form-check-label" for="package1">
                           Select
                         </label>
@@ -187,13 +187,13 @@ function changeElement(selectElement) {
                 </div>
                 <div class="col">
                   <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" id="card-header" data-target="card-header11">
                       <h4>Medium</h4>
                     </div>
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 250.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package2" value="250000" required>
+                        <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)" id="package2" value="250000" required>
                         <label class="form-check-label" for="package2">
                           Select
                         </label>
@@ -202,14 +202,14 @@ function changeElement(selectElement) {
                   </div>
                 </div>
                 <div class="col">
-                  <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                    <div class="card-header py-3 text-white bg-primary border-primary">
+                  <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3 " id="card-header" data-target="card-header12">
                       <h4>Advance</h4>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title mt-3">Rp 350.000</h3>
                         <div class="form-check mt-4">
-                            <input class="form-check-input" type="radio" name="package" id="package3" value="350000" required>
+                            <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)"  id="package3" value="350000" required>
                             <label class="form-check-label" for="package3">
                               Select
                             </label>
@@ -242,13 +242,13 @@ function changeElementWash(selectElement) {
         element.innerHTML = `
             <div class="col">
                   <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" id="card-header" data-target="card-header13">
                       <h4 >Reguler</h4>
                     </div>
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 50.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package1" value="50000">
+                        <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)"  id="package1" value="50000">
                         <label class="form-check-label" for="package1">
                           Select
                         </label>
@@ -258,13 +258,13 @@ function changeElementWash(selectElement) {
                 </div>
                 <div class="col">
                   <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" id="card-header" data-target="card-header14">
                       <h4>Premium</h4>
                     </div>
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 100.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package2" value="100000">
+                        <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)"  id="package2" value="100000">
                         <label class="form-check-label" for="package2">
                           Select
                         </label>
@@ -273,14 +273,14 @@ function changeElementWash(selectElement) {
                   </div>
                 </div>
                 <div class="col">
-                  <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                    <div class="card-header py-3 text-white bg-primary border-primary">
+                  <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3 " id="card-header" data-target="card-header15">
                       <h4>Detailing</h4>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title mt-3">Rp 500.000</h3>
                         <div class="form-check mt-4">
-                            <input class="form-check-input" type="radio" name="package" id="package3" value="500000">
+                            <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)"  id="package3" value="500000">
                             <label class="form-check-label" for="package3">
                               Select
                             </label>
@@ -294,13 +294,13 @@ function changeElementWash(selectElement) {
         element.innerHTML = `
             <div class="col">
                   <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" id="card-header" data-target="card-header16">
                       <h4 >Reguler</h4>
                     </div>
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 20.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package1" value="20000">
+                        <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)"  id="package1" value="20000">
                         <label class="form-check-label" for="package1">
                           Select
                         </label>
@@ -310,13 +310,13 @@ function changeElementWash(selectElement) {
                 </div>
                 <div class="col">
                   <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" id="card-header" data-target="card-header17">
                       <h4>Premium</h4>
                     </div>
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 50.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package2" value="50000">
+                        <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)"  id="package2" value="50000">
                         <label class="form-check-label" for="package2">
                           Select
                         </label>
@@ -325,14 +325,14 @@ function changeElementWash(selectElement) {
                   </div>
                 </div>
                 <div class="col">
-                  <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                    <div class="card-header py-3 text-white bg-primary border-primary">
+                  <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3 " id="card-header" data-target="card-header18">
                       <h4>Detailing</h4>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title mt-3">Rp 150.000</h3>
                         <div class="form-check mt-4">
-                            <input class="form-check-input" type="radio" name="package" id="package3" value="150000">
+                            <input class="form-check-input" type="radio" name="package" onclick="changeHeaderClass(this)"  id="package3" value="150000">
                             <label class="form-check-label" for="package3">
                               Select
                             </label>

@@ -32,9 +32,6 @@
                             <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
                         </span>
                     </div>
-                    <div class="form-group d-flex justify-content-end mb-4">
-                        <a href="#" class="text-decoration-none">Forgot Password?</a>
-                    </div>
                     <button type="submit" class="btn btn-primary btn-block w-100">Login</button>
                 </form>
                 <div class="text-center mt-3">
