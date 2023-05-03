@@ -39,19 +39,28 @@ class BookingController extends Controller
      */
     public function store(Request $request, $service_type)
     {
-        $vehicle = Vehicle::find($request->get('vehicle'));
-        $booking = new Booking([
-            'id_vehicle' => $request->get('vehicle'),
-            'id_user' => Auth::user()->id,
-            'service_type' => $service_type,
-            'name' => $vehicle->name,
-            'date' => $request->get('date'),
-            'notes' => $request->get('notes'),
-            'ammount' => $request->get('package'),
-            'status' => 'pending'
+        $credentials = $request->validate([
+            'vehicle' => 'required',
         ]);
-        $booking->save();
-        return redirect('/')->with('success', 'Booking saved!');
+        if ($credentials) {
+            $booking = new Booking([
+                'id_user' => Auth::user()->id,
+                'service_type' => $service_type,
+                'name' => $request->get('vehicle'),
+                'vehicle_type' => $request->get('vehicle_type'),
+                'transmission' => $request->get('transmission'),
+                'license_plate' => $request->get('license_plate'),
+                'date' => $request->get('date'),
+                'notes' => $request->get('notes'),
+                'ammount' => $request->get('package'),
+                'status' => 'pending'
+            ]);
+            $booking->save();
+            return redirect('/')->with('success', 'Booking saved!');
+        }else{
+            return redirect('/')->with('error', 'Please Add Vehicle First!');
+        }
+
     }
 
     /**
@@ -125,12 +134,11 @@ class BookingController extends Controller
         } else {
             return redirect('/home/orderlist')->with('error', 'Please select at least one sparepart.');
         }
-
     }
 
     public function invoice(Booking $booking)
     {
-        $booking = Booking::with(['vehicle', 'user', 'spareparts'])->findOrFail($booking->id);
+        $booking = Booking::with(['user', 'spareparts'])->findOrFail($booking->id);
         $priceSparepart = 0;
         foreach ($booking->spareparts as $sparepart) {
             $priceSparepart += $sparepart->price;
@@ -143,7 +151,7 @@ class BookingController extends Controller
 
     public function invoiceUser($id)
     {
-        $booking = Booking::with(['vehicle', 'user', 'spareparts'])->findOrFail($id);
+        $booking = Booking::with(['user', 'spareparts'])->findOrFail($id);
         $priceSparepart = 0;
         foreach ($booking->spareparts as $sparepart) {
             $priceSparepart += $sparepart->price;

@@ -36,6 +36,7 @@ class VehicleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'user_id' => 'required',
             'name' => 'required',
             'vehicle_type' => 'required',
             'transmission' => 'required',
@@ -43,11 +44,13 @@ class VehicleController extends Controller
         ]);
 
         $vehicle = new Vehicle([
+            'id_user' => $request->get('user_id'),
             'name' => $request->get('name'),
             'vehicle_type' => $request->get('vehicle_type'),
             'transmission' => $request->get('transmission'),
             'license_plate' => $request->get('license_number_plate')
         ]);
+        
 
         $vehicle->save();
 
@@ -109,7 +112,16 @@ class VehicleController extends Controller
      */
     public function destroy($id)
     {
-        Vehicle::find($id)->delete();
+        try {
+            $vehicle = Vehicle::find($id);
+            $vehicle->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            if($e->errorInfo[1] == 1451){
+                return redirect('/')->with('error', 'Vehicle cannot be deleted because it is used in another table!');
+            }else{
+                throw $e;
+            }
+        }
         return redirect('/')->with('success', 'Vehicle deleted!');
     }
 }

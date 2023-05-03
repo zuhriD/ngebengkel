@@ -10,14 +10,15 @@ class Vehicle extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id_user',
         'name',
         'vehicle_type',
         'transmission',
         'license_plate'
     ];
 
-    public function bookings()
+    public function user()
     {
-        return $this->hasMany(Booking::class, 'id_vehicle');
+        return $this->belongsTo(User::class, 'id_user');
     }
 }

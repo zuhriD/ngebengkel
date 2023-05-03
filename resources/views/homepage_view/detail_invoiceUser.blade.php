@@ -27,15 +27,19 @@
                                     </tr>
                                     <tr>
                                         <th scope="col">Vehicle Type</th>
-                                        <td>{{ $booking->vehicle->vehicle_type }}</td>
+                                        <td>{{ $booking->vehicle_type }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="col">Vehicle</th>
-                                        <td>{{ $booking->vehicle->name }}</td>
+                                        <td>{{ $booking->name }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="col">Transmission</th>
-                                        <td>{{ $booking->vehicle->transmission }}</td>
+                                        <td>{{ $booking->transmission }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">License Plate</th>
+                                        <td>{{ $booking->license_plate }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="col">Booking Date</th>
@@ -44,10 +48,10 @@
                                     <tr>
                                         <th scope="col">Request</th>
                                         <td>
-                                            @if ($booking->note == null)
+                                            @if ($booking->notes == null)
                                                 <p>No Request</p>
                                             @else
-                                                <p>{{ $booking->note }}</p>
+                                                <p>{{ $booking->notes }}</p>
                                             @endif
                                         </td>
                                     </tr>

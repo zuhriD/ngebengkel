@@ -15,6 +15,7 @@ class CreateVehiclesTable extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->string('name');
             $table->enum('vehicle_type', ['car', 'motorcycle']);
             $table->enum('transmission', ['manual', 'automatic']);

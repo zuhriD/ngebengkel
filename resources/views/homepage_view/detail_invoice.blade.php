@@ -78,24 +78,33 @@
         </tr>
         <tr>
             <th>Vehicle Type</th>
-            <td>{{ $booking->vehicle->vehicle_type }}</td>
+            <td>{{ $booking->vehicle_type }}</td>
         </tr>
         <tr>
             <th>Vehicle</th>
-            <td>{{ $booking->vehicle->name }}</td>
+            <td>{{ $booking->name }}</td>
         </tr>
         <tr>
             <th>Transmission</th>
-            <td>{{ $booking->vehicle->transmission }}</td>
+            <td>{{ $booking->transmission }}</td>
+        </tr>
+        <tr>
+            <th>Licence Plate</th>
+            <td>{{ $booking->license_plate }}</td>
         </tr>
         <tr>
             <th>Service Type</th>
             <td>{{ $booking->service_type }}</td>
         </tr>
-        @if ($booking->note != null)
+        @if ($booking->notes != null)
             <tr>
                 <th>Note</th>
-                <td>{{ $booking->note }}</td>
+                <td>{{ $booking->notes }}</td>
+            </tr>
+        @else
+            <tr>
+                <th>Note</th>
+                <td>No Request</td>
             </tr>
         @endif
         <tr>

@@ -19,7 +19,7 @@
                                 <p class="text-center">There is no data</p>
                             </div>
                         @else
-                            <table class="table table-striped">
+                            <table class="table table-striped" id="tableInvoice">
                                 <thead>
                                     <tr>
                                         <th scope="col">Booking Date</th>
@@ -38,14 +38,14 @@
                                         <tr>
                                             <td>{{ \Carbon\Carbon::parse($order->date)->format('M d, Y') }}</td>
                                             <td>{{ $order->user->fullname }}</td>
-                                            <td>{{ $order->vehicle->vehicle_type }}</td>
-                                            <td>{{ $order->vehicle->name }}</td>
-                                            <td>{{ $order->vehicle->transmission }}</td>
+                                            <td>{{ $order->vehicle_type }}</td>
+                                            <td>{{ $order->name }}</td>
+                                            <td>{{ $order->transmission }}</td>
                                             <td>
-                                                @if ($order->note == null)
+                                                @if ($order->notes == null)
                                                     <p>No Request</p>
                                                 @else
-                                                    <p>{{ $order->note }}</p>
+                                                    <p>{{ $order->notes }}</p>
                                                 @endif
                                             </td>
                                             <td>{{ $order->ammount }}</td>
@@ -81,4 +81,10 @@
             </div>
         </div>
     </div>
+    <script>
+        // Datatable Table Invoice
+         $(document).ready(function() {
+            $('#tableInvoice').DataTable();
+        });
+    </script>
 @endsection

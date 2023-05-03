@@ -15,10 +15,12 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_vehicle')->constrained('vehicles')->onDelete('cascade');
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->enum('service_type', ['repair', 'wash']);
             $table->string('name');
+            $table->enum('vehicle_type', ['car', 'motorcycle']);
+            $table->enum('transmission', ['manual', 'automatic']);
+            $table->string('license_plate');
             $table->date('date');
             $table->text('notes')->nullable();
             $table->string('ammount');

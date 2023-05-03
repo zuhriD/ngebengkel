@@ -10,19 +10,16 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_vehicle',
         'id_user',
         'service_type',
         'name',
+        'vehicle_type',
+        'transmission',
+        'license_plate',
         'date',
         'notes',
         'ammount'
     ];
-
-    public function vehicle()
-    {
-        return $this->belongsTo(Vehicle::class, 'id_vehicle');
-    }
 
     public function user()
     {

@@ -13,40 +13,57 @@ class HomeController extends Controller
 
     public function index()
     {
-        $vehicle = Vehicle::all();
-        $count = Vehicle::count();
-        $history = Booking::with('vehicle')->get();
-        $countCarRepair = Booking::with('vehicle')
-            ->where('service_type', 'repair')
-            ->whereHas('vehicle', function ($query) {
-                $query->where('vehicle_type', 'car');
-            })
+        $vehicle = "";
+        $count = 0;
+        $history = "";
+        if (auth()->user()->role_id == 1) {
+            $vehicle = Vehicle::all();
+            $count = Vehicle::count();
+            $history = Booking::all();
+        }else if(auth()->user()->role_id == 2){
+            $vehicle = Vehicle::where('id_user', auth()->user()->id)->get();
+            $history = Booking::where('id_user', auth()->user()->id)->get();
+            if ($vehicle->isEmpty() && $history->isEmpty()) {
+                $vehicle = "";
+                $count = 0;
+                $history = "";
+            }else if($vehicle->isEmpty() && !$history->isEmpty()){
+                $vehicle = "";
+                $count = 0;
+                $history = Booking::where('id_user', auth()->user()->id)->get();
+            }else if(!$vehicle->isEmpty() && $history->isEmpty()){
+                $vehicle = Vehicle::where('id_user', auth()->user()->id)->get();
+                $count = Vehicle::where('id_user', auth()->user()->id)->count();
+                $history = "";
+            }
+            else{
+                $vehicle = Vehicle::where('id_user', auth()->user()->id)->get();
+                $count = Vehicle::where('id_user', auth()->user()->id)->count();
+                $history = Booking::where('id_user', auth()->user()->id)->get();
+            }
+        }
+        $countCarRepair = Booking::where('service_type', 'repair')
+            ->where('status', 'on_process')
+            ->where('vehicle_type', 'car')
             ->count();
-        $countCarWash = Booking::with('vehicle')
-            ->where('service_type', 'wash')
-            ->whereHas('vehicle', function ($query) {
-                $query->where('vehicle_type', 'car');
-            })
+        $countCarWash = Booking::where('service_type', 'wash')
+            ->where('status', 'on_process')
+            ->where('vehicle_type', 'car')
             ->count();
-        $countMotorcycleRepair = Booking::with('vehicle')
-            ->where('service_type', 'repair')
-            ->whereHas('vehicle', function ($query) {
-                $query->where('vehicle_type', 'motorcycle');
-            })
+        $countMotorcycleRepair = Booking::where('service_type', 'repair')
+            ->where('status', 'on_process')
+            ->where('vehicle_type', 'motorcycle')
             ->count();
-        $countMotorcycleWash = Booking::with('vehicle')
-            ->where('service_type', 'wash')
-            ->whereHas('vehicle', function ($query) {
-                $query->where('vehicle_type', 'motorcycle');
-            })
+        $countMotorcycleWash = Booking::where('service_type', 'wash')
+            ->where('status', 'on_process')
+            ->where('vehicle_type', 'motorcycle')
             ->count();
         return view('homepage_view.home', compact('vehicle', 'count', 'history', 'countCarRepair', 'countCarWash', 'countMotorcycleRepair', 'countMotorcycleWash'));
     }
 
     public function orderlist()
     {
-        $orderlist = Booking::with('vehicle')
-            ->orderBy('status', 'asc')
+        $orderlist = Booking::orderBy('status', 'asc')
             ->orderByRaw("FIELD(status, 'stand_by', 'on_process', 'done')")
             ->get();
         $spareparts = Sparepart::all();
@@ -61,13 +78,13 @@ class HomeController extends Controller
 
     public function invoice()
     {
-        $orderlist = Booking::with(['vehicle', 'user'])->where('status', 'done')->get();
+        $orderlist = Booking::with('user')->where('status', 'done')->get();
         return view('homepage_view.invoice', compact('orderlist'));
     }
 
     public function invoiceUser($id)
     {
-        $orderlist = Booking::with(['vehicle', 'user', 'spareparts'])->where('id_user', $id)->where('status', 'done')->get();
+        $orderlist = Booking::with(['user', 'spareparts'])->where('id_user', $id)->where('status', 'done')->get();
         return view('homepage_view.invoice', compact('orderlist'));
     }
 

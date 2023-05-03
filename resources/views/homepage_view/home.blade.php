@@ -22,6 +22,17 @@
                     </div>
                 </div>
             </div>
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show mt-3 mb-3" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @elseif(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show mt-3 mb-3" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="row mt-4">
                 <div class="col-md-6">
                     <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalRepair">
@@ -65,12 +76,11 @@
             <h5 class="mt-4">History</h5>
             <div class="row mt-4">
                 <div class="col-md-12">
-                    @if ($history->count() > 0)
+                    @if ($history != "")
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">Vehicle</th>
-                                    <th scope="col">Type</th>
                                     <th scope="col">Service</th>
                                     <th scope="col">Date</th>
                                 </tr>
@@ -79,7 +89,6 @@
                                 @foreach ($history as $data)
                                     <tr>
                                         <td>{{ $data->name }}</td>
-                                        <td>{{ $data->vehicle->vehicle_type }}</td>
                                         <td>{{ $data->service_type }}</td>
                                         <td>{{ \Carbon\Carbon::parse($data->date)->format('M d, Y') }}</td>
                                     </tr>
@@ -115,29 +124,33 @@
                     </div>
                     <div class="card-body">
                         <table>
+                            @if ($vehicle == "")
+                                <p class="text-center" style="color: gray">You don't have any vehicle yet</p>
+                            @else
                             @foreach ($vehicle as $car)
-                                <tr>
-                                    <td class="pe-lg-5">{{ $car->name }}</td>
-                                    <td class="ps-lg-5 pe-2">
-                                        <a href="{{ route('vehicle.edit', ['vehicle' => $car->id]) }}"
-                                            class="text-decoration-none" data-bs-toggle="modal"
-                                            data-bs-target="#modalEditVehicle" data-id="{{ $car->id }}"
-                                            data-name="{{ $car->name }}" data-type="{{ $car->vehicle_type }}"
-                                            data-transmission="{{ $car->transmission }}"
-                                            data-license-plate="{{ $car->license_plate }}"><i class="fas fa-edit"></i></a>
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('vehicle.destroy', ['vehicle' => $car->id]) }}"
-                                            method="post" class="d-inline">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-link text-decoration-none"
-                                                style="color: black !important" onclick="return confirm('Are you sure?')"><i
-                                                    class="fas fa-trash"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            <tr>
+                                <td class="pe-lg-5">{{ $car->name }}</td>
+                                <td class="ps-lg-5 pe-2">
+                                    <a href="{{ route('vehicle.edit', ['vehicle' => $car->id]) }}"
+                                        class="text-decoration-none" data-bs-toggle="modal"
+                                        data-bs-target="#modalEditVehicle" data-id="{{ $car->id }}"
+                                        data-name="{{ $car->name }}" data-type="{{ $car->vehicle_type }}"
+                                        data-transmission="{{ $car->transmission }}"
+                                        data-license-plate="{{ $car->license_plate }}"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td>
+                                    <form action="{{ route('vehicle.destroy', ['vehicle' => $car->id]) }}"
+                                        method="post" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-link text-decoration-none"
+                                            style="color: black !important" onclick="return confirm('Are you sure?')"><i
+                                                class="fas fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                            @endif
 
 
                         </table>
@@ -157,21 +170,22 @@
                 <div class="modal-body">
                     <form action="{{ route('vehicle.store') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <label for="name"><b>Name</b></label>
-                        <input type="text" name="name" id="name" class="form-control mt-2">
+                        <input type="text" name="name" id="name" class="form-control mt-2" required>
                         <label for="name" class="mt-2"><b>Vehicle Type</b></label>
-                        <select name="vehicle_type" id="vehicle_type" class="form-select mt-2">
+                        <select name="vehicle_type" id="vehicle_type" class="form-select mt-2" required>
                             <option value="1">Car</option>
                             <option value="2">Motorcycle</option>
                         </select>
                         <label for="name" class="mt-2"><b>Transmission</b></label>
-                        <select name="transmission" id="transmission" class="form-select mt-2">
+                        <select name="transmission" id="transmission" class="form-select mt-2" required>
                             <option value="1">Manual</option>
                             <option value="2">Automatic</option>
                         </select>
                         <label for="name" class="mt-2"><b>License Number Plate</b></label>
                         <input type="text" name="license_number_plate" id="license_number_plate"
-                            class="form-control mt-2">
+                            class="form-control mt-2" required>
 
                 </div>
                 <div class="modal-footer">
@@ -199,20 +213,26 @@
                         @csrf
                         <label for="name"><b>Select Your Vehicle</b></label>
                         <select name="vehicle" id="selectVehicle" class="form-select mt-2"
-                            onchange="changeElement(this)">
+                            onchange="changeElement(this)" required>
                             <option value="" selected disabled>Select Vehicle</option>
+                            @if ($vehicle != "")
                             @foreach ($vehicle as $data)
-                                <option value="{{ $data->id }}" data-vehicle="{{ $data->vehicle_type }}"
-                                    data-transmission="{{ $data->transmission }}">{{ $data->name }}</option>
+                                <option value="{{ $data->name }}" data-vehicle="{{ $data->vehicle_type }}"
+                                    data-transmission="{{ $data->transmission }}" data-license-plate="{{ $data->license_plate }}">{{ $data->name }}</option>
                             @endforeach
+                                
+                            @endif
                         </select>
+                        <input type="hidden" name="vehicle_type" id="vehicle_type" value="">
+                        <input type="hidden" name="transmission" id="transmission" value="">
+                        <input type="hidden" name="license_plate" id="license_plate" value="">
                         <label for="name" class="mt-2"><b>Date</b></label>
-                        <input type="date" name="date" id="date" class="form-control mt-2">
+                        <input type="date" name="date" id="date" class="form-control mt-2" required>
                         <label for="name" class="mt-2"><b>Notes</b></label>
                         <input type="text" name="notes" id="notes" class="form-control mt-2"
                             placeholder="Notes">
                         <label for="name" class="mt-2"><b>Select Package</b></label>
-                        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center mt-3" id="pricingTable">
+                        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center mt-3" id="pricingTable" >
                             <p class="text-center col-md-12" style="color: gray">Please Select Vehicle First</p>
                         </div>
                 </div>
@@ -240,11 +260,16 @@
                         <select name="vehicle" id="selectVehicleWash" class="form-select mt-2"
                             onchange="changeElementWash(this)">
                             <option value="" selected disabled>Select Vehicle</option>
+                            @if ($vehicle != "")
                             @foreach ($vehicle as $data)
-                                <option value="{{ $data->id }}" data-vehicle="{{ $data->vehicle_type }}">
-                                    {{ $data->name }}</option>
+                            <option value="{{ $data->name }}" data-vehicle="{{ $data->vehicle_type }}"
+                                data-transmission="{{ $data->transmission }}" data-license-plate="{{ $data->license_plate }}">{{ $data->name }}</option>
                             @endforeach
+                            @endif
                         </select>
+                        <input type="hidden" name="vehicle_type" id="vehicle_type" value="">
+                        <input type="hidden" name="transmission" id="transmission" value="">
+                        <input type="hidden" name="license_plate" id="license_plate" value="">
                         <label for="name" class="mt-2"><b>Date</b></label>
                         <input type="date" name="date" id="date" class="form-control mt-2">
                         <label for="name" class="mt-2"><b>Notes</b></label>

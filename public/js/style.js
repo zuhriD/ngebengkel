@@ -3,12 +3,17 @@ function changeElement(selectElement) {
     var selectedOption = selectElement.options[selectElement.selectedIndex];
     var vehicleType = "";
     var transmission = "";
+    var licensePlate = "";
     if (selectedOption.tagName.toLowerCase() === 'option') {
         vehicleType = selectedOption.getAttribute('data-vehicle');
         transmission = selectedOption.getAttribute('data-transmission');
-
+        licensePlate = selectedOption.getAttribute('data-license-plate');
     }
     var element = document.getElementById("pricingTable");
+    var modalElement = document.getElementById("modalRepair");
+    modalElement.querySelector("#vehicle_type").value = vehicleType;
+    modalElement.querySelector("#transmission").value = transmission;
+    modalElement.querySelector("#license_plate").value = licensePlate;
     if (vehicleType == "car" && transmission == "manual") {
         element.innerHTML = `
             <div class="col">
@@ -19,7 +24,7 @@ function changeElement(selectElement) {
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 550.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package1" value="550000">
+                        <input class="form-check-input" type="radio" name="package" id="package1" value="550000" required>
                         <label class="form-check-label" for="package1">
                           Select
                         </label>
@@ -35,7 +40,7 @@ function changeElement(selectElement) {
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 850.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package2" value="850000">
+                        <input class="form-check-input" type="radio" name="package" id="package2" value="850000" required>
                         <label class="form-check-label" for="package2">
                           Select
                         </label>
@@ -51,7 +56,7 @@ function changeElement(selectElement) {
                     <div class="card-body">
                         <h3 class="card-title mt-3">Rp 1.250.000</h3>
                         <div class="form-check mt-4">
-                            <input class="form-check-input" type="radio" name="package" id="package3" value="1250000">
+                            <input class="form-check-input" type="radio" name="package" id="package3" value="1250000" required>
                             <label class="form-check-label" for="package3">
                               Select
                             </label>
@@ -70,7 +75,7 @@ function changeElement(selectElement) {
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 650.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package1" value="650000">
+                        <input class="form-check-input" type="radio" name="package" id="package1" value="650000" required>
                         <label class="form-check-label" for="package1">
                           Select
                         </label>
@@ -86,7 +91,7 @@ function changeElement(selectElement) {
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 950.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package2" value="950000">
+                        <input class="form-check-input" type="radio" name="package" id="package2" value="950000" required>
                         <label class="form-check-label" for="package2">
                           Select
                         </label>
@@ -102,7 +107,7 @@ function changeElement(selectElement) {
                     <div class="card-body">
                         <h3 class="card-title mt-3">Rp 1.350.000</h3>
                         <div class="form-check mt-4">
-                            <input class="form-check-input" type="radio" name="package" id="package3" value="1350000">
+                            <input class="form-check-input" type="radio" name="package" id="package3" value="1350000" required>
                             <label class="form-check-label" for="package3">
                               Select
                             </label>
@@ -121,7 +126,7 @@ function changeElement(selectElement) {
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 120.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package1" value="120000">
+                        <input class="form-check-input" type="radio" name="package" id="package1" value="120000" required>
                         <label class="form-check-label" for="package1">
                           Select
                         </label>
@@ -137,7 +142,7 @@ function changeElement(selectElement) {
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 220.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package2" value="220000">
+                        <input class="form-check-input" type="radio" name="package" id="package2" value="220000" required>
                         <label class="form-check-label" for="package2">
                           Select
                         </label>
@@ -153,7 +158,7 @@ function changeElement(selectElement) {
                     <div class="card-body">
                         <h3 class="card-title mt-3">Rp 320.000</h3>
                         <div class="form-check mt-4">
-                            <input class="form-check-input" type="radio" name="package" id="package3" value="320000">
+                            <input class="form-check-input" type="radio" name="package" id="package3" value="320000" required>
                             <label class="form-check-label" for="package3">
                               Select
                             </label>
@@ -172,7 +177,7 @@ function changeElement(selectElement) {
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 150.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package1" value="150000">
+                        <input class="form-check-input" type="radio" name="package" id="package1" value="150000" required>
                         <label class="form-check-label" for="package1">
                           Select
                         </label>
@@ -188,7 +193,7 @@ function changeElement(selectElement) {
                     <div class="card-body">
                       <h3 class="card-title mt-3">Rp 250.000</h3>
                       <div class="form-check mt-4">
-                        <input class="form-check-input" type="radio" name="package" id="package2" value="250000">
+                        <input class="form-check-input" type="radio" name="package" id="package2" value="250000" required>
                         <label class="form-check-label" for="package2">
                           Select
                         </label>
@@ -204,7 +209,7 @@ function changeElement(selectElement) {
                     <div class="card-body">
                         <h3 class="card-title mt-3">Rp 350.000</h3>
                         <div class="form-check mt-4">
-                            <input class="form-check-input" type="radio" name="package" id="package3" value="350000">
+                            <input class="form-check-input" type="radio" name="package" id="package3" value="350000" required>
                             <label class="form-check-label" for="package3">
                               Select
                             </label>
@@ -221,10 +226,18 @@ function changeElement(selectElement) {
 function changeElementWash(selectElement) {
     var selectedOption = selectElement.options[selectElement.selectedIndex];
     var vehicleType = "";
+    var transmission = "";
+    var licensePlate = "";
     if (selectedOption.tagName.toLowerCase() == "option") {
         vehicleType = selectedOption.getAttribute("data-vehicle");
+        transmission = selectedOption.getAttribute("data-transmission");
+        licensePlate = selectedOption.getAttribute("data-license-plate");
     }
     var element = document.getElementById("pricingTableWash");
+    var modalElement = document.getElementById("modalWash");
+    modalElement.querySelector("#vehicle_type").value = vehicleType;
+    modalElement.querySelector("#transmission").value = transmission;
+    modalElement.querySelector("#license_plate").value = licensePlate;
     if (vehicleType == "car") {
         element.innerHTML = `
             <div class="col">
