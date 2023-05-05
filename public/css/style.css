@@ -371,3 +371,6 @@
       display: block;
     }
   }
+
+input[type="radio"] {display: none;}
+input[type="radio"]:checked + p {display: block !important;}

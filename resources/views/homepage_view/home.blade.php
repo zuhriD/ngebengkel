@@ -258,7 +258,7 @@
                         @csrf
                         <label for="name"><b>Select Your Vehicle</b></label>
                         <select name="vehicle" id="selectVehicleWash" class="form-select mt-2"
-                            onchange="changeElementWash(this)">
+                            onchange="changeElementWash(this)" required>
                             <option value="" selected disabled>Select Vehicle</option>
                             @if ($vehicle != "")
                             @foreach ($vehicle as $data)
@@ -271,10 +271,10 @@
                         <input type="hidden" name="transmission" id="transmission" value="">
                         <input type="hidden" name="license_plate" id="license_plate" value="">
                         <label for="name" class="mt-2"><b>Date</b></label>
-                        <input type="date" name="date" id="date" class="form-control mt-2">
+                        <input type="date" name="date" id="date" class="form-control mt-2" required>
                         <label for="name" class="mt-2"><b>Notes</b></label>
                         <input type="text" name="notes" id="notes" class="form-control mt-2"
-                            placeholder="Notes">
+                            placeholder="Notes" >
                         <label for="name" class="mt-2"><b>Select Package</b></label>
                         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center mt-3" id="pricingTableWash">
                             <p class="text-center col-md-12" style="color: gray">Please Select Vehicle First</p>
